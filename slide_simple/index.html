@@ -21,32 +21,6 @@
     </div>
 
     <img id="photo" src="images/home.png" width="90%" />
-
-    <script>
-      // 사진을 바꿔주는 함수
-      $("#home").on("click", function () {
-        $("#photo").attr("src", "images/home.png");
-        $('a').css("font-weight", "normal");
-        $(this).css("font-weight", "bold");
-      });
-
-      $("#seoul").on("click", function () {
-        $("#photo").attr("src", "images/seoul.png");
-        $('a').css("font-weight", "normal");
-        $(this).css("font-weight", "bold");
-      });
-
-      $("#tokyo").on("click", function () {
-        $("#photo").attr("src", "images/tokyo.png");
-        $('a').css("font-weight", "normal");
-        $(this).css("font-weight", "bold");
-      });
-
-      $("#paris").on("click", function () {
-        $("#photo").attr("src", "images/paris.png");
-        $('a').css("font-weight", "normal");
-        $(this).css("font-weight", "bold");
-      });
-    </script>
+    <script src="javascript/changePhoto.js"></script>
   </body>
 </html>
