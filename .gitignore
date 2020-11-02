@@ -1,7 +1,7 @@
 # mysql secure info
 
-.password.js
-.example.sql
+password.js
+example.sql
 nodejs/
 
 node_modules/
