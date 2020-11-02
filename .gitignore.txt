@@ -1,4 +1,0 @@
-# : secure db info
-.password.js
-.example.js
-nodejs/.mysql.js
