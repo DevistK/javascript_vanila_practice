@@ -43,29 +43,43 @@ var app = http.createServer(function (request, response) {
         response.end("Sever Error...");
       });
     } else {
-      fs.readdir("./data", function (error, filelist) {
-        var filteredId = path.parse(queryData.id).base;
-        fs.readFile(`data/${filteredId}`, "utf8", function (err, description) {
-          var title = queryData.id;
-          var sanitizedTitle = sanitizeHtml(title);
-          var sanitizedDescription = sanitizeHtml(description, {
-            allowedTags: ["h1"],
-          });
-          var list = template.list(filelist);
-          var html = template.HTML(
-            sanitizedTitle,
-            list,
-            `<h2>${sanitizedTitle}</h2>${sanitizedDescription}`,
-            ` <a href="/create">create</a>
-                <a href="/update?id=${sanitizedTitle}">update</a>
+      connection.query("SELECT * FROM topic", function (error, row, fields) {
+        if (!error) {
+          connection.query(
+            `SELECT * FROM topic WHERE id=?`,
+            [queryData.id],
+            function (error2, topic) {
+              if (!error) {
+                console.log(topic[0].title);
+                var title = topic[0].title,
+                  description = topic[0].description,
+                  list = template.list(row),
+                  html = template.HTML(
+                    title,
+                    list,
+                    `<h2>${title}</h2>${description}
+                  `,
+                    ` <a href="/create">create</a>
+              <a href="/update?id=${queryData.id}">update</a>
                 <form action="delete_process" method="post">
-                  <input type="hidden" name="id" value="${sanitizedTitle}">
-                  <input type="submit" value="delete">
-                </form>`
+                  <input type="hidden" name="id" value="${queryData.id}">
+                <input type="submit" value="delete">
+               </form>`
+                  );
+                response.writeHead(200);
+                response.end(html);
+              } else {
+                console.log(error);
+                response.writeHead(404);
+                response.end("Sever Error...");
+              }
+            }
           );
-          response.writeHead(200);
-          response.end(html);
-        });
+        } else {
+          console.log(error);
+          response.writeHead(404);
+          response.end("Sever Error...");
+        }
       });
     }
   } else if (pathname === "/create") {
