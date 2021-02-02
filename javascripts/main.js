@@ -61,7 +61,7 @@ function showDetails() {
   frame.classList.add(TINY_EFFECT_CLASS);
   setTimeout(function () {
     frame.classList.remove(TINY_EFFECT_CLASS);
-  },50);
+  }, 50);
 }
 
 function addKeyPressHandler() {
@@ -74,10 +74,7 @@ function addKeyPressHandler() {
   });
 }
 
-function initializeEvents() {
+(function (thumbnails) {
   "use strict";
   thumbnails.forEach(addThumbClickHandler);
-  addKeyPressHandler();
-}
-
-initializeEvents();
+})(getThumbnailsArray());
