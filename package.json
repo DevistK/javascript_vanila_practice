@@ -28,14 +28,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codestates/im10-2019-01-subclass-dance-party.git"
+    "url": "git+https://github.com/codestates/im-sprint-subclass-dance-party.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/codestates/im10-2019-01-subclass-dance-party/issues"
+    "url": "https://github.com/codestates/im-sprint-subclass-dance-party/issues"
   },
-  "homepage": "https://github.com/codestates/im10-2019-01-subclass-dance-party#readme",
+  "homepage": "https://github.com/codestates/im-sprint-subclass-dance-party#readme",
   "devDependencies": {
     "@mochajs/json-file-reporter": "^1.3.0",
     "chai": "^4.2.0",
@@ -47,6 +47,6 @@
     "sinon": "^6.3.5"
   },
   "dependencies": {
-    "@codestates-cc/submission-npm": "^1.1.2"
+    "@codestates-cc/submission-npm": "^1.1.3"
   }
 }
