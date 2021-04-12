@@ -1,11 +1,10 @@
 /* eslint-disable */
-const dancers = [];
-
-function handleClickDancerButton () {
+// const    = [];
+function handleClickDancerButton() {
   /* makeBlinkyDancer is the dancer maker functions available in global scope.
-  * A new object of the given type will be created and added
-  * to the stage.
-  */
+   * A new object of the given type will be created and added
+   * to the stage.
+   */
 
   // make a dancer with a random position
   let dancer = makeBlinkyDancer(
@@ -16,7 +15,7 @@ function handleClickDancerButton () {
   document.body.appendChild(dancer.$node);
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const elAddDancerButton = document.querySelector('.addDancerButton');
-  elAddDancerButton.addEventListener('click', handleClickDancerButton);
+window.addEventListener("DOMContentLoaded", () => {
+  const elAddDancerButton = document.querySelector(".addDancerButton");
+  elAddDancerButton.addEventListener("click", handleClickDancerButton);
 });
