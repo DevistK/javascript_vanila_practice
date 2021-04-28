@@ -2,10 +2,7 @@ if (typeof window === "undefined") {
   var jsdom = require("jsdom");
   var { JSDOM } = jsdom;
   var { document } = new JSDOM("").window;
-} // you don't have to worry about this code. this is for testing.
-
-// Dancer를 pseudoclassical한 방식으로 리팩토링하세요
-// 참고로, constructor는 대문자로 이름을 시작하는 것이 관례입니다
+}
 
 function Dancer(top, left, timeBetweenSteps) {
   // your code here
@@ -49,7 +46,6 @@ Dancer.prototype.addDancerEvent = function (eventFn) {
   // eventFn: 댄서 인스턴스를 클릭했을때 작동시킬 이벤트 로직
 };
 
-// you don't have to worry about this code. this is for testing.
 if (typeof window === "undefined") {
   module.exports = Dancer;
 }

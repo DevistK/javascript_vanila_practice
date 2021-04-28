@@ -8,9 +8,6 @@ function handleClickDancerButton() {
    * to the stage.
    */
 
-  // make a dancer with a random position
-  //
-  // TODO:
   let dancer = new BlinkyDancerClass(
     document.body.clientHeight * Math.random(),
     document.body.clientWidth * Math.random(),
