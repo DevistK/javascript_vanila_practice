@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // 동적으로 props 엘리먼트를 추가하기 위한 음식 API
 const foodILike = [
@@ -21,6 +21,7 @@ const foodILike = [
 
 function Food({ name, picture }) {
   // props로 해당 컴포넌트의 prop Value를 가져옴
+  // 비구조화 할당으로 props를 더 간편히 표현 가능
   // jsx + props 로 컴포넌트 재사용성이 매우용이
   // props의 prop으로 가져오든 , 해당 prop name 으로 가져오든 컴포넌트의 인자로 전달되기만 하면 정보를 쉽게 가져온다.
   // html상에서 text를 렌더링하고자 할때 JSX는 그것을 props로 정보를 보내는것과 같음, prop은 string 뿐아니라 object 들도 상관없이 보낼 수 있다.
@@ -33,6 +34,45 @@ function Food({ name, picture }) {
       </span>
     </h2>
   );
+}
+
+function Container({ children }) {
+  const style = {
+    border: '2px solid black',
+    padding: "16px",
+  };
+  return (
+    <div style={style}>
+      {children}
+    </div>
+  )
+}
+
+function Counter() {
+  const style = {
+    fontSize: "40px",
+    fontWeight: "bold"
+  }
+
+  let [number , setNumber] = useState(0);
+  const onIncreases = () => {
+    setNumber(prevNumber => prevNumber + 1)    
+  }
+  const onDecreases = () => {
+    if (number <= 0) {
+      setNumber(0)  
+    }else {
+      setNumber(prevNumber => prevNumber - 1)
+    }
+  }
+  return (
+    <div>
+      <h2>주문 개수</h2>
+      <p style={style}>{number}</p>
+      <button onClick={onIncreases}>+</button>
+      <button onClick={onDecreases}>-</button>
+    </div>
+  )
 }
 
 // 함수내부에서 컴포넌트를 리턴하게 되면 Application 안에서 호출된 renderFood 는 각각 아이템들을 컴포넌트를 통해 렌더링 하게 된다.
@@ -52,9 +92,12 @@ function App() {
       {/* 기본적으로 컴포넌트의 엘리먼트에는 유니크한 key를 가져야한다. */}
       {/* 유니크 key를 갖지 않으면 에러를 발생 시키기 때문에 고유하게 만들기 위해서 사용되는 데이터에 id 를 주고 , 컴포넌트 prop에 key name을 준다.*/}
       {/* 이는 컴포넌트의 인자로 전달되지 않지만 리액트 내부에서 사용하기 위한것 */}
-      {foodILike.map((dish) => (
-        <Food key={dish.id} name={dish.name} picture={dish.src} />
-      ))}
+      <Container>
+        <Counter />
+        {foodILike.map((dish) => (
+          <Food key={dish.id} name={dish.name} picture={dish.src} />
+        ))}
+      </Container>
       {/* {foodILike.map(renderFood)} */}
     </div>
   );
