@@ -8,42 +8,29 @@ function Container({ children }) {
   return <div style={style}>{children}</div>;
 }
 
-function Count() {
-  const [number, setCount] = useState(0);
+function Movie() {
+  // state Hook 관리
+  const [isLoading, setLoad] = useState(true); // 로딩 시점
+  const [movies, setMovies] = useState([]); // 영화 업데이트
 
-  useEffect(()=>{
-    // DOM 업데이트 ( 렌더링 ) 후 어떤 작업을 할것인지 useEffect Hook을 이용할 수 있다.
-    // 기존 class 컴포넌트는 단일 함수로 기능을 할 수가 없었던걸 보면 매우 편리함을 알 수 있다.
-    
-    document.title = `The number is ${number}`
-  })
-
-  const addCount = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
-
-  const minusCount = () => {
-    if (number <= 0) {
-      setCount(0);
-    } else {
-      setCount((prevCount) => prevCount - 1);
+  useEffect(() => {
+    // ComponentDidMount + ComponentDidUpdate 렌더 후 로딩 시점 변경
+    function loadComplete() {
+      setTimeout(() => {
+        return setLoad((loadState) => (loadState = false));
+      }, 6000);
     }
-  };
+    loadComplete();
+  });
 
-  return (
-    <div>
-      <h1>The number is {number}</h1>
-      <button onClick={addCount}>Add</button>
-      <button onClick={minusCount}>Minus</button>
-    </div>
-  );
+  return <div>{isLoading ? "로딩중입니다" : "로딩완료"}</div>;
 }
 
 function App() {
   return (
     <div className="App">
       <Container>
-        <Count />
+        <Movie />
       </Container>
     </div>
   );
@@ -53,4 +40,4 @@ export default App;
 
 // life cycle
 // Mount : 컴포넌트가 실행될때 defaultProps 와 state를 저장
-// 
+//
