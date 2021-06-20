@@ -3,9 +3,9 @@ import propTypes from "prop-types";
 
 function Movie({ id, year, title, summary, poster }) {
   return (
-    <div>
+    <li>
       <h4>{title}</h4>
-    </div>
+    </li>
   );
 }
 

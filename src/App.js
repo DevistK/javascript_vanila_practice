@@ -6,7 +6,11 @@ function Container({ children }) {
     border: "2px solid black",
     padding: "16px",
   };
-  return <div style={style}>{children}</div>;
+  return (
+    <section class="container" style={style}>
+      {children}
+    </section>
+  );
 }
 
 function MovieLoad() {
@@ -37,22 +41,26 @@ function MovieLoad() {
   }, []);
 
   return (
-    <div>
-      {isLoading
-        ? "로딩중입니다.."
-        : moviesItem.map((movie) => {
-            return (
-              <Movie
-                key={movie.id}
-                id={movie.id}
-                year={movie.year}
-                title={movie.title}
-                summary={movie.summary}
-                poster={movie.medium_cover_image}
-              />
-            );
-          })}
-    </div>
+    <ul>
+      {isLoading ? (
+        <div class="loader">
+          <span class="loader__text">로딩중..</span>
+        </div>
+      ) : (
+        moviesItem.map((movie) => {
+          return (
+            <Movie
+              key={movie.id}
+              id={movie.id}
+              year={movie.year}
+              title={movie.title}
+              summary={movie.summary}
+              poster={movie.medium_cover_image}
+            />
+          );
+        })
+      )}
+    </ul>
   );
 }
 
