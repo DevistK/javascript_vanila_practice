@@ -2,15 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Movie from "./Movie";
 function Container({ children }) {
-  const style = {
-    border: "2px solid black",
-    padding: "16px",
-  };
-  return (
-    <section class="container" style={style}>
-      {children}
-    </section>
-  );
+  return <section className="container">{children}</section>;
 }
 
 function MovieLoad() {
@@ -34,33 +26,31 @@ function MovieLoad() {
       } = await axios.get(
         "https://yts-proxy.nomadcoders1.now.sh/list_movies.json?sort_by=rating"
       );
-      setMovies((item) => (item = movies));
+      setMovies(movies);
       setLoad(false);
     };
     getMovies();
   }, []);
 
-  return (
-    <ul>
-      {isLoading ? (
-        <div class="loader">
-          <span class="loader__text">로딩중..</span>
-        </div>
-      ) : (
-        moviesItem.map((movie) => {
-          return (
-            <Movie
-              key={movie.id}
-              id={movie.id}
-              year={movie.year}
-              title={movie.title}
-              summary={movie.summary}
-              poster={movie.medium_cover_image}
-            />
-          );
-        })
-      )}
-    </ul>
+  return isLoading ? (
+    <div className="loader">
+      <span className="loader__text">로딩중..</span>
+    </div>
+  ) : (
+    <div className="movies">
+      {moviesItem.map((movie) => {
+        return (
+          <Movie
+            key={movie.id}
+            id={movie.id}
+            year={movie.year}
+            title={movie.title}
+            summary={movie.summary}
+            poster={movie.medium_cover_image}
+          />
+        );
+      })}
+    </div>
   );
 }
 
