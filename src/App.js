@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Header from "./Header";
 import Movie from "./Movie";
+import Spinner from "./Spinner";
+import "./Movie.css";
 function Container({ children }) {
   return <section className="container">{children}</section>;
 }
@@ -35,23 +38,26 @@ function MovieLoad() {
 
   return isLoading ? (
     <div className="loader">
-      <span className="loader__text">로딩중..</span>
+      <Spinner />
     </div>
   ) : (
-    <div className="movies">
-      {moviesItem.map((movie) => {
-        return (
-          <Movie
-            key={movie.id}
-            id={movie.id}
-            year={movie.year}
-            title={movie.title}
-            summary={movie.summary}
-            poster={movie.medium_cover_image}
-            genres={movie.genres}
-          />
-        );
-      })}
+    <div className="inner">
+      <Header />
+      <div className="movies">
+        {moviesItem.map((movie) => {
+          return (
+            <Movie
+              key={movie.id}
+              id={movie.id}
+              year={movie.year}
+              title={movie.title}
+              summary={movie.summary}
+              poster={movie.medium_cover_image}
+              genres={movie.genres}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
