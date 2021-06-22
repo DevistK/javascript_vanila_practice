@@ -10,6 +10,7 @@ function MovieLoad() {
   const [isLoading, setLoad] = useState(true); // 로딩 시점
   const [moviesItem, setMovies] = useState([]); // 영화 업데이트
 
+  // Mount, Update Hook 관리
   useEffect(() => {
     // useEffect 사용시 인자가 없으면 dom이 변화할때마다 무조건적으로 해당 useEffect를 실행한다.
     // 이는 axios 같이 API data를 받아올때 끝없이 받아오게 되기 때문에 매우 낭비이다.
@@ -47,6 +48,7 @@ function MovieLoad() {
             title={movie.title}
             summary={movie.summary}
             poster={movie.medium_cover_image}
+            genres={movie.genres}
           />
         );
       })}
