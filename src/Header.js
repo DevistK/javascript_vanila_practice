@@ -8,7 +8,7 @@ function Header() {
       </div>
       <div className="header__search">
         <input
-          class="search"
+          className="search"
           type="search"
           placeholder="무슨 영화를 찾으시나요 ?"
         ></input>

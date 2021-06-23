@@ -1,10 +1,11 @@
 import React from "react";
 import propTypes from "prop-types";
 
-function Movie({ id, year, title, summary, poster, genres }) {
+function Movie({ id, year, title, summary, poster, genres, rating }) {
   return (
     <div className="movie">
       <div className="movie__data">
+        <span className="movie__rating">{rating}</span>
         <img src={poster} alt={title} title={title}></img>
         <h3 className="movie__title">{title}</h3>
         <h5 className="movie__year">{year}</h5>
@@ -17,7 +18,7 @@ function Movie({ id, year, title, summary, poster, genres }) {
             );
           })}
         </ul>
-        <p className="movie__summary">{summary}</p>
+        {/* <p className="movie__summary">{summary}</p> */}
       </div>
     </div>
   );

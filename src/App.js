@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "./Header";
 import Movie from "./Movie";
+import Side from "./Side";
 import Spinner from "./Spinner";
 import "./Movie.css";
 function Container({ children }) {
@@ -43,20 +44,25 @@ function MovieLoad() {
   ) : (
     <div className="inner">
       <Header />
-      <div className="movies">
-        {moviesItem.map((movie) => {
-          return (
-            <Movie
-              key={movie.id}
-              id={movie.id}
-              year={movie.year}
-              title={movie.title}
-              summary={movie.summary}
-              poster={movie.medium_cover_image}
-              genres={movie.genres}
-            />
-          );
-        })}
+      <div className="inner__wrap">
+        <Side />
+        <div className="movies">
+          <h2 className="movies__title">신작 영화</h2>
+          {moviesItem.map((movie) => {
+            return (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
+                rating={movie.rating}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );
