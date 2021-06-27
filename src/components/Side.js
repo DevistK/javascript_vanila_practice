@@ -1,24 +1,24 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Side() {
-  const sampleUrl = "#";
   return (
     <nav className="nav">
       <ul className="nav__list">
         <li className="nav__item">
-          <a href={sampleUrl}>신작 영화</a>
+          <Link to="/">영화 리스트</Link>
         </li>
         <li className="nav__item">
-          <a href={sampleUrl}>트렌드</a>
+          <Link to="/about">MovieFlix 소개</Link>
         </li>
         <li className="nav__item">
-          <a href={sampleUrl}>개봉 예정</a>
+          <Link to="">개봉 예정</Link>
         </li>
         <li className="nav__item">
-          <a href={sampleUrl}>좋아하는 영화</a>
+          <Link to="">좋아하는 영화</Link>
         </li>
         <li className="nav__item">
-          <a href={sampleUrl}>최근 본 영화</a>
+          <Link to="">최근 본 영화</Link>
         </li>
       </ul>
     </nav>
