@@ -4,8 +4,9 @@ import Loader from "./Loader"
 import Weather from "./Weather"
 import * as Location from 'expo-location';
 import axios from 'axios';
+import {API_WEATHER} from "@env"
 
-const API_KEY = "575bfee76a8a38cfd750e4026b542bbb";
+const API_KEY = API_WEATHER
 
 export default function App() {
   const [isLoading, setLoading] = useState(true)
