@@ -9,15 +9,19 @@ import {API_WEATHER} from "@env"
 const API_KEY = API_WEATHER
 
 export default function App() {
-  const [isLoading, setLoading] = useState(true)
-  const [temp, setData] = useState({}) 
+  const [isLoading, setLoading] = useState(true);
+  const [temp, setData] = useState(null);
+  const [condition, setCondition] = useState(null);
   useEffect(()=>{
 
     getWeather = async (latitude, longitude)=>{
-      const { data } = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`);
+      const { data : {
+        main : {temp},
+        weather,
+      }} = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`);
       setLoading(false)
-      setData(data)
-      console.log(data)
+      setData(temp)
+      setCondition(weather[0].main)
     }
 
     getLocation = async ()=>{
@@ -35,6 +39,6 @@ export default function App() {
   return (    
     isLoading ? 
     <Loader /> :
-    <Weather temp={Math.round(temp.main?.temp)}/>
+    <Weather temp={Math.round(temp)} condition={condition}/>
   );
 }
