@@ -12,6 +12,7 @@ export default function App() {
   const [isLoading, setLoading] = useState(true);
   const [temp, setData] = useState(null);
   const [condition, setCondition] = useState(null);
+  
   useEffect(()=>{
 
     getWeather = async (latitude, longitude)=>{
