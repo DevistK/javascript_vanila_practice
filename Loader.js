@@ -1,27 +1,28 @@
-import React from "react"
-import { StyleSheet, Text, View } from "react-native"
+import React from "react";
+import { StyleSheet, Text, View, StatusBar } from "react-native";
 
-function Loader(){
-    return (
+function Loader() {
+  return (
     <View style={styles.container}>
-        <Text style={styles.loadText}>Loading Weather..</Text>
+      <StatusBar barStyle="dark-content" />
+      <Text style={styles.loadText}>Loading Weather..</Text>
     </View>
-    )
+  );
 }
 
 const styles = StyleSheet.create({
-    container : {
-        flex:1,
-        justifyContent: "flex-end",
-        paddingVertical:100,
-        paddingHorizontal:20,
-        backgroundColor: "#FDF6AA"
-    },  
-    loadText : {
-        fontSize:26,
-        textAlign: "center",
-        color:"#111"
-    }
-})
+  container: {
+    flex: 1,
+    justifyContent: "flex-end",
+    paddingVertical: 100,
+    paddingHorizontal: 20,
+    backgroundColor: "#FDF6AA",
+  },
+  loadText: {
+    fontSize: 26,
+    textAlign: "center",
+    color: "#111",
+  },
+});
 
-export default Loader
+export default Loader;
