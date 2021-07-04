@@ -14,36 +14,30 @@ const weatherOption = {
     gradient: ["#536976", "#292E49"],
   },
   Drizzle: {
-    iconName: "",
-    gradient: ["", ""],
+    iconName: "weather-pouring",
+    gradient: ["#0F2027", "#203A43", "#2C5364"],
   },
   Rain: {
-    iconName: "",
-    gradient: ["", ""],
+    iconName: "weather-pouring",
+    gradient: ["#0F2027", "#203A43", "#2C5364"],
   },
   Snow: {
-    iconName: "",
-    gradient: ["", ""],
-  },
-  Atmosphere: {
-    iconName: "",
-    gradient: ["", ""],
+    iconName: "weather-snowy-heavy",
+    gradient: ["#C9D6FF", "#E2E2E2"],
   },
   Clear: {
-    iconName: "",
-    gradient: ["", ""],
+    iconName: "weather-sunny",
+    gradient: ["#1c92d2", "#f2fcfe"],
   },
   Clouds: {
     iconName: "weather-cloudy",
     gradient: ["#00416A", "#E4E5E6"],
-  },
-  Haze: {
-    iconName: "",
-    gradient: ["", ""],
+    title: "구름",
+    subtitle: "오늘은 날이 조금 시원하지만 구름이 껴있네요 ! 😊",
   },
   Dust: {
-    iconName: "",
-    gradient: ["", ""],
+    iconName: "weather-hail",
+    gradient: ["#FF8235", "#30E8BF"],
   },
 };
 export default function Weather({ temp, condition }) {
@@ -59,11 +53,12 @@ export default function Weather({ temp, condition }) {
           size={100}
           color="white"
         />
-        <Text style={styles.temp}>
-          {temp}℃ {condition}
-        </Text>
+        <Text style={styles.temp}>{temp}℃</Text>
       </View>
-      <View style={styles.halfContainer}></View>
+      <View style={{ ...styles.halfContainer, ...styles.textContainer }}>
+        <Text style={styles.title}>{weatherOption[condition].title}</Text>
+        <Text style={styles.subtitle}>{weatherOption[condition].subtitle}</Text>
+      </View>
     </LinearGradient>
   );
 }
@@ -94,9 +89,30 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "white",
   },
+  title: {
+    color: "white",
+    fontSize: 44,
+    fontWeight: "300",
+    marginBottom: 36,
+  },
+  subtitle: {
+    color: "white",
+    fontWeight: "600",
+    fontSize: 24,
+  },
+  weahter: {
+    fontSize: 30,
+    textAlign: "center",
+    color: "#fff",
+    marginTop: 30,
+  },
   halfContainer: {
     flex: 1,
     justifyContent: "center",
     alignContent: "center",
+  },
+  textContainer: {
+    paddingHorizontal: 30,
+    alignItems: "flex-start",
   },
 });

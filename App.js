@@ -11,7 +11,7 @@ const API_KEY = API_WEATHER;
 export default function App() {
   const [isLoading, setLoading] = useState(true);
   const [temp, setData] = useState(null);
-  const [condition, setCondition] = useState();
+  const [condition, setCondition] = useState(null);
 
   useEffect(() => {
     const getWeather = async (latitude, longitude) => {
@@ -23,9 +23,9 @@ export default function App() {
       } = await axios.get(
         `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
       );
-      setLoading(false);
       setData(temp);
       setCondition(weather[0].main);
+      setLoading(false);
     };
 
     const getLocation = async () => {
@@ -45,6 +45,6 @@ export default function App() {
   return isLoading ? (
     <Loader />
   ) : (
-    <Weather temp={Math.round(temp)} condition={condition} />
+    <Weather temp={Math.floor(temp)} condition={condition} />
   );
 }
