@@ -23,9 +23,9 @@ export default function App() {
       } = await axios.get(
         `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
       );
-      setLoading(false);
       setData(temp);
       setCondition(weather[0].main);
+      setLoading(false);
     };
 
     const getLocation = async () => {
