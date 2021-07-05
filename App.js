@@ -11,7 +11,7 @@ const API_KEY = API_WEATHER;
 export default function App() {
   const [isLoading, setLoading] = useState(true);
   const [temp, setData] = useState(null);
-  const [condition, setCondition] = useState();
+  const [condition, setCondition] = useState(null);
 
   useEffect(() => {
     const getWeather = async (latitude, longitude) => {
@@ -45,6 +45,6 @@ export default function App() {
   return isLoading ? (
     <Loader />
   ) : (
-    <Weather temp={Math.round(temp)} condition={condition} />
+    <Weather temp={Math.floor(temp)} condition={condition} />
   );
 }
