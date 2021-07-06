@@ -39,6 +39,12 @@ const weatherOption = {
     iconName: "weather-hail",
     gradient: ["#FF8235", "#30E8BF"],
   },
+  Mist: {
+    iconName: "weather-fog",
+    gradient: ["#2b5876", "#4e4376"],
+    title: "안개",
+    subtitle: "오늘은 안개가 껴있습니다 !",
+  },
 };
 export default function Weather({ temp, condition }) {
   return (
@@ -75,6 +81,7 @@ Weather.propTypes = {
     "Clouds",
     "Haze",
     "Dust",
+    "Mist",
   ]),
 };
 
