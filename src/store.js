@@ -4,7 +4,7 @@ const ADD = "ADD";
 const DELETE = "DELETE";
 
 // action creator
-export const addToDo = (text) => {
+const addToDo = (text) => {
   return {
     type: ADD,
     text,
@@ -12,7 +12,7 @@ export const addToDo = (text) => {
   };
 };
 
-export const deleteToDo = (id) => {
+const deleteToDo = (id) => {
   return {
     type: DELETE,
     id,
@@ -31,5 +31,10 @@ const reducer = (state = [], action) => {
 };
 
 const store = createStore(reducer);
+
+export const actionCreator = {
+  addToDo,
+  deleteToDo,
+};
 
 export default store;
