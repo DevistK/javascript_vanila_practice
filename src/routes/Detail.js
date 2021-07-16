@@ -24,6 +24,8 @@ function mapStateToProps(state, ownProps) {
   } = ownProps;
   const paramsId = parseInt(id);
 
+  // toDoList 라는 state LIST가 불러와지기때문에 , 원하는걸 매칭하기 위해서는 id 끼리의 검사가 필요
+  // 필터링을 안해 줄 시 0번째 데이터만 출력 되고 , 삭제도 안됨
   const toDos = toDoList.filter((list) => list.id === paramsId);
   return { toDo: toDos[0] };
 }
