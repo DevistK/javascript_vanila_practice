@@ -17,10 +17,19 @@ function Detail({ toDo, onBtnClick, pageBack }) {
 
 function mapStateToProps(state, ownProps) {
   const { toDoList } = state;
-  return { toDo: toDoList[0] };
+  const {
+    match: {
+      params: { id },
+    },
+  } = ownProps;
+  const paramsId = parseInt(id);
+
+  const toDos = toDoList.filter((list) => list.id === paramsId);
+  return { toDo: toDos[0] };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
+  console.log(ownProps);
   const {
     match: {
       params: { id },
