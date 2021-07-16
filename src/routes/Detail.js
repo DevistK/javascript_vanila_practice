@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { actionCreator } from "../store";
+import { actionCreator } from "../reducers/toDo";
 
 function Detail({ toDo, onBtnClick, pageBack }) {
   if (toDo?.id === undefined) {
@@ -16,12 +16,8 @@ function Detail({ toDo, onBtnClick, pageBack }) {
 }
 
 function mapStateToProps(state, ownProps) {
-  const {
-    match: {
-      params: { id },
-    },
-  } = ownProps;
-  return { toDo: state.find((toDo) => toDo.id === parseInt(id)) };
+  const { toDoList } = state;
+  return { toDo: toDoList[0] };
 }
 
 function mapDispatchToProps(dispatch, ownProps) {

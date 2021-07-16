@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { actionCreator } from "../store";
+import { actionCreator } from "../reducers/toDo";
 
 function ToDo({ text, id, onBtnClick }) {
   return (

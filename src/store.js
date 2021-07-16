@@ -1,40 +1,8 @@
 import { createStore } from "redux";
+import { persistStore } from "redux-persist";
+import rootReducer from "./reducers/index";
 
-const ADD = "ADD";
-const DELETE = "DELETE";
+export const store = createStore(rootReducer);
+export const persistor = persistStore(store);
 
-// action creator
-const addToDo = (text) => {
-  return {
-    type: ADD,
-    text,
-    id: Date.now(),
-  };
-};
-
-const deleteToDo = (id) => {
-  return {
-    type: DELETE,
-    id,
-  };
-};
-
-const reducer = (state = [], action) => {
-  switch (action.type) {
-    case ADD:
-      return [{ text: action.text, id: action.id }, ...state];
-    case DELETE:
-      return state.filter((toDo) => toDo.id !== action.id);
-    default:
-      return state;
-  }
-};
-
-const store = createStore(reducer);
-
-export const actionCreator = {
-  addToDo,
-  deleteToDo,
-};
-
-export default store;
+export default { store, persistor };
