@@ -1,27 +1,31 @@
-const ADD = "ADD";
-const DELETE = "DELETE";
-// action creator
-const addToDo = (text) => {
-  return {
-    type: ADD,
-    text,
-    id: Date.now(),
-  };
-};
+import { createAction } from "@reduxjs/toolkit";
 
-const deleteToDo = (id) => {
+// action creator
+// toolkit 사용으로 간소화된 actionCreator
+// 반복되어서 쓰이던 코드가 사라짐 , payload 안에 담김
+const addToDo = createAction("ADD", (text) => {
   return {
-    type: DELETE,
-    id,
+    payload: {
+      text,
+      id: Date.now(),
+    },
   };
-};
+});
+
+const deleteToDo = createAction("DELETE", (id) => {
+  return {
+    payload: {
+      id: parseInt(id),
+    },
+  };
+});
 
 const reducer = (state = [], action) => {
   switch (action.type) {
-    case ADD:
-      return [{ text: action.text, id: action.id }, ...state];
-    case DELETE:
-      return state.filter((toDo) => toDo.id !== action.id);
+    case addToDo.type:
+      return [{ text: action.payload.text, id: action.payload.id }, ...state];
+    case deleteToDo.type:
+      return state.filter((toDo) => toDo.id !== action.payload.id);
     default:
       return state;
   }
