@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { actionCreator } from "../reducers/toDo";
+import { remove } from "../reducers/toDo";
 
 function Detail({ toDo, onBtnClick, pageBack }) {
   if (toDo?.id === undefined) {
@@ -39,7 +39,7 @@ function mapDispatchToProps(dispatch, ownProps) {
     history: { goBack },
   } = ownProps;
   return {
-    onBtnClick: () => dispatch(actionCreator.deleteToDo(parseInt(id))),
+    onBtnClick: () => dispatch(remove(id)),
     pageBack: goBack,
   };
 }

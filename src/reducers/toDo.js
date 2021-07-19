@@ -1,39 +1,20 @@
-import { createAction } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
-// action creator
-// toolkit 사용으로 간소화된 actionCreator
-// 반복되어서 쓰이던 코드가 사라짐 , payload 안에 담김
-const addToDo = createAction("ADD", (text) => {
-  return {
-    payload: {
-      text,
-      id: Date.now(),
+// createSlice 로 기존 action , reducer Craete를 한번에 해줄 수 있다.
+const toDos = createSlice({
+  name: "toDosReducer",
+  initialState: [],
+  reducers: {
+    add: (state, action) => {
+      state.unshift({ text: action.payload, id: Date.now() });
     },
-  };
+    remove: (state, action) => {
+      const states = current(state);
+      return states.filter((todo) => todo.id !== parseInt(action.payload));
+    },
+  },
 });
 
-const deleteToDo = createAction("DELETE", (id) => {
-  return {
-    payload: {
-      id: parseInt(id),
-    },
-  };
-});
+export const { add, remove } = toDos.actions;
 
-const reducer = (state = [], action) => {
-  switch (action.type) {
-    case addToDo.type:
-      return [{ text: action.payload.text, id: action.payload.id }, ...state];
-    case deleteToDo.type:
-      return state.filter((toDo) => toDo.id !== action.payload.id);
-    default:
-      return state;
-  }
-};
-
-export const actionCreator = {
-  addToDo,
-  deleteToDo,
-};
-
-export default reducer;
+export default toDos.reducer;
