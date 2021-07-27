@@ -1,3 +1,4 @@
+import Nweet from "components/Nweet";
 import { dbService } from "myBase";
 import React, { useState, useEffect } from "react";
 
@@ -45,13 +46,13 @@ function Home({ userObj }) {
         ></input>
         <input type="submit" value="Nweet"></input>
       </form>
-      <div>
-        {nweets.map((nweet) => (
-          <div key={nweet.id}>
-            <h4>{nweet.text}</h4>
-          </div>
-        ))}
-      </div>
+      {nweets.map((nweet) => (
+        <Nweet
+          key={nweet.id}
+          nweetObj={nweet}
+          isOnwer={nweet.creatorID === userObj.uid}
+        />
+      ))}
     </div>
   );
 }
