@@ -1,7 +1,9 @@
 import { dbService } from "myBase";
-import React from "react";
+import React, { useState } from "react";
 
 function Nweet({ nweetObj, isOnwer }) {
+  const [editing, setEditing] = useState(false);
+  const [newNweet, setNewNweet] = useState(nweetObj.text);
   const onDeleteClick = async () => {
     const ok = window.confirm("이 트윗을 삭제 하시겠습니까 ?");
     if (ok) {
@@ -9,13 +11,43 @@ function Nweet({ nweetObj, isOnwer }) {
     } else {
     }
   };
+  const toggleEditing = () => setEditing((prev) => !prev);
+  const onSubmit = async (event) => {
+    event.preventDefault();
+    await dbService.doc(`nweets/${nweetObj.id}`).update({
+      text: newNweet,
+    });
+    setEditing(false);
+  };
+  const onChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setNewNweet(value);
+  };
   return (
     <div>
-      <h4>{nweetObj.text}</h4>
+      {editing ? (
+        <>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              placeholder="수정할 내용을 입력해주세요"
+              value={newNweet}
+              required
+              onChange={onChange}
+            />
+            <input type="submit" value="Edit" />
+          </form>
+          <button onClick={toggleEditing}>Cancel</button>
+        </>
+      ) : (
+        <h4>{nweetObj.text}</h4>
+      )}
       {isOnwer && (
         <>
           <button onClick={onDeleteClick}>Delete Nweet</button>
-          <button>Edit Nweet</button>
+          <button onClick={toggleEditing}>Edit Nweet</button>
         </>
       )}
     </div>
