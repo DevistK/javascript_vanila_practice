@@ -34,6 +34,13 @@ function Home({ userObj }) {
     } = event;
     setNweet(value);
   };
+  const onFileChange = (event) => {
+    const {
+      target: { files },
+    } = event;
+    const oneFIle = files[0];
+    console.log(oneFIle);
+  };
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -44,7 +51,8 @@ function Home({ userObj }) {
           placeholder="What's on your mind?"
           maxLength={120}
         ></input>
-        <input type="submit" value="Nweet"></input>
+        <input type="file" accept="image/*" onChange={onFileChange} />
+        <input type="submit" value="Nweet" />
       </form>
       {nweets.map((nweet) => (
         <Nweet

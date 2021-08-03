@@ -25,7 +25,6 @@ function App() {
       ) : (
         "초기화 중.."
       )}
-      <footer>&copy; Nwitter {new Date().getFullYear()}</footer>
     </>
   );
 }
