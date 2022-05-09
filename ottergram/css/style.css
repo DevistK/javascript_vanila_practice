@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Gugi&display=swap");
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-size: 10px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  text-decoration: none;
+}
+
+.main-header {
+  flex: 0 1 auto;
+}
+
+.logo-text {
+  background: rgb(202, 238, 255);
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 37px;
+  font-family: "Gugi", cursive, sans-serif;
+}
+
+.main-content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.thumbnail-title {
+  display: block;
+  margin: 0;
+  padding: 4px 10px;
+  background: rgb(96, 125, 139);
+  color: rgb(202, 238, 255);
+  font-size: 18px;
+}
+
+.thumbnail-list {
+  flex: 0 1 auto;
+  display: block;
+  list-style: none;
+  padding: 20px 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  order: 2;
+  display: flex;
+  justify-content: space-between;
+}
+
+.thumbnail-item {
+  display: inline-block;
+  min-width: 120px;
+  max-width: 120px;
+  border: 1px solid rgb(100%, 100%, 100%);
+  border: 1px solid rgba(100%, 100%, 100%, 0.8);
+  transition: transform 133ms ease-in-out;
+}
+
+.thumbnail-item:hover {
+  transform: scale(1.2);
+}
+
+.thumbnail-image {
+  width: 100%;
+  display: block;
+}
+
+.detail-image-container {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.detail-image-frame {
+  position: relative;
+  text-align: center;
+  transition: transform 333ms;
+}
+
+.is-tiny{
+  transform:scale(0.001);
+  transition: transform 0ms;
+}
+
+.detail-image-title {
+  color: white;
+  font-size: 40px;
+  font-family: "Gugi", cursive, sans-serif;
+  text-shadow: rgba(0, 0, 0, 0.9) 1px 2px 9px;
+  position: absolute;
+  bottom: -16px;
+  left: 4px;
+}
+
+.hidden-detail .detail-image-container {
+  display: none;
+}
+
+.hidden-detail .thumbnail-list {
+  flex-direction: column;
+  align-items: center;
+}
+
+.hidden-detail .thumbnail-item {
+  max-width: 80%;
+}
+
+.detail-image {
+  width: 90%;
+}
+
+@media all and (orientation: portrait) {
+  .main-content {
+    flex-direction: row;
+    overflow: hidden;
+  }
+  .thumbnail-list {
+    flex-direction: column;
+    order: 0;
+    margin-left: 20px;
+    padding:0 35px;
+  }
+
+  .thumbnail-item {
+    max-width: 260px;
+  }
+  .thumbnail-item + .thumbnail-item {
+    margin-top: 20px;
+  }
+}
